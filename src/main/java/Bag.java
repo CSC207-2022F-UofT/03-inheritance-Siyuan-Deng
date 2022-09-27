@@ -80,7 +80,6 @@ public abstract class Bag {
         int roomLeft = this.getCapacity() - this.getNumberOfContents();
         if (roomLeft > 0){
             this.contents[roomLeft] = newItem;
-            this.capacity -= 1;
             this.numberOfContents += 1;
             return true;
         } else{
@@ -105,6 +104,7 @@ public abstract class Bag {
         } else{
             String lastObj = contents[this.getNumberOfContents()];
             contents[this.getNumberOfContents()] = null;
+            this.numberOfContents -= 1;
             return lastObj;
         }
     }

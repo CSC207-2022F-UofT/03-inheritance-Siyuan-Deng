@@ -22,7 +22,7 @@ public class HandBagTest {
 
     @Test(timeout = 50)
     public void testGetColor() {
-        assertEquals("Blue", b.getColor());
+        assertEquals("Blue", b.getColour());
     }
 
     @Test(timeout = 50)
@@ -52,8 +52,8 @@ public class HandBagTest {
 
     @Test(timeout = 50)
     public void TestSetColor() {
-        b.setColor("Red");
-        assertEquals("Red", b.getColor());
+        b.setColour("Red");
+        assertEquals("Red", b.getColour());
     }
 
     @Test(timeout = 50)
