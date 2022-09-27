@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.lang.reflect.Array;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,9 +15,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
-
+    private String colour;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
     /*
      * TODO: Create a constructor that takes two arguments:
@@ -26,8 +29,12 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
-
+    public Bag(String colour, int capacity){
+        this.colour = colour;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[numberOfContents];
+    }
 
 
     /*
@@ -38,17 +45,26 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColour() {
+        return this.colour;
+    }
 
+    public int getNumberOfContents() {
+        return this.numberOfContents;
+    }
 
+    public int getCapacity() {
+        return this.capacity;
+    }
 
     /*
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
 
-
-
-
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
 
     /*
      * TODO: Create a method called addItem that takes in a String
@@ -60,10 +76,17 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
-
-
-
-
+    public boolean addItem(String newItem){
+        int roomLeft = this.getCapacity() - this.getNumberOfContents();
+        if (roomLeft > 0){
+            this.contents[roomLeft] = newItem;
+            this.capacity -= 1;
+            this.numberOfContents += 1;
+            return true;
+        } else{
+            return false;
+        }
+    }
 
     /**
      * TODO: Create a method called popItem that returns a String.
@@ -75,8 +98,16 @@ public abstract class Bag {
      *
      * @return
      */
-
-
+    public String popItem(){
+        int roomLeft = this.getCapacity() - this.getNumberOfContents();
+        if (roomLeft == this.getCapacity()){
+            return null;
+        } else{
+            String lastObj = contents[this.getNumberOfContents()];
+            contents[this.getNumberOfContents()] = null;
+            return lastObj;
+        }
+    }
 
 
 
@@ -87,7 +118,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        this.capacity += n;
     }
 
     /**
@@ -99,7 +130,7 @@ public abstract class Bag {
      */
     @Override
     public String toString() {
-        return this.color + " Bag (" + this.numberOfContents + " / " +
+        return this.colour + " Bag (" + this.numberOfContents + " / " +
                 this.capacity + ")";
     }
 
